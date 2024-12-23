@@ -1,0 +1,31 @@
+_name=midiminder
+pkgname="${_name,,}"
+pkgver=1.0
+pkgrel=1
+pkgdesc="Automated ALSA MIDI connection management tool"
+arch=(any)
+url='https://github.com/mzero/midiminder'
+license=(BSD-2-Clause)
+depends=(fmt alsa-lib)
+groups=(pro-audio)
+install=midiminder.install
+source=("https://github.com/mzero/midiminder/archive/refs/tags/$pkgver.tar.gz")
+sha512sums=('5f2a279ebc36c17e517cefa59952a2b41f5385b903f103ecf7681c34fb9b27861b5362be48b8fb8f6f9f26493140de2788ba63e59e6460e5ab147101403e0fae')
+
+build() {
+    cd $srcdir/$pkgname-$pkgver
+    make
+}
+
+package() {
+    cd $srcdir/$pkgname-$pkgver
+    make PREFIX=/usr DESTDIR="$pkgdir" install
+    install -Dvm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
+    install -Dvm644 rules/*.rules -t "$pkgdir/usr/share/$pkgname/examples/"
+    install -Dvm644 man/*.1 -t "$pkgdir/usr/share/man/man1/"
+    install -Dvm644 man/*.5 -t "$pkgdir/usr/share/man/man5/"
+    install -Dvm644 man/*.8 -t "$pkgdir/usr/share/man/man8/"
+    install -Dvm644 "$pkgname.service" -t "$pkgdir/usr/lib/systemd/system/"
+    mkdir -p "$pkgdir/etc/midiminder"
+    ln -s "/usr/share/$pkgname/examples/example.rules" "$pkgdir/etc/midiminder/"
+}

@@ -1,0 +1,6 @@
+pre_install() {
+	useradd -c 'midiminder daemon' -d /run/midiminder -M -G audio -r -s /usr/bin/nologin midiminder
+}
+post_remove() {
+	userdel midiminder
+}
