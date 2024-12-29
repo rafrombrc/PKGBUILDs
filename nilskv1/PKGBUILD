@@ -5,12 +5,14 @@ pkgname=nilsk1v
 pkgver=1.2.6
 pkgrel=1
 pkgdesc="Nils' K1v - Kawai K1 Digital Synthesizer Emulation."
-arch=('x86_64')
+arch=('i686', 'x86_64')
 url="https://k1v.nilsschneider.de"
 license=('None')
 groups=('pro-audio')
 depends=('cairo>=1.10.0' 'intel-oneapi-basekit>=0.5.0' 'sdl2>=2.0.4' 'xcb-util>=0.4.0' 'xcb-util-cursor>=0.0.99')
 options=('!strip' '!emptydirs')
+source_i686=("https://nilsschneider.de/files/NilsK1v-x86_64.deb")
+sha512sums_i686=('50473e48ead181d2b8b5c4845a8c4277525da15833e91f345e69607a7f558345da8c5300a745435b5c0098714cbe4bcd921f4730bea5d653f9ce761a6707b94d')
 source_x86_64=("https://nilsschneider.de/files/NilsK1v-x86_64.deb")
 sha512sums_x86_64=('48f4cfd0d5462c563b4ffd04e91abcc0f1b707fa740ef7e5a476f1e91013083229c2ec74e64c43e086dd85dba67b131ccf9e2a68116bf29dc7ac842d6bc16e61')
 
