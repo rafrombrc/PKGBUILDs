@@ -1,0 +1,41 @@
+
+pkgname=ardour
+_pkgname=Ardour
+pkgver=8.10.0
+pkgrel=2
+pkgdesc="A multichannel hard disk recorder and digital audio workstation"
+arch=('x86_64')
+url="https://ardour.org/"
+license=('GPL')
+depends=('aubio' 'cairomm' 'libx11' 'libxml2' 'pangomm' 'qjackctl' 'taglib' 'fftw' 'flac' 
+         'graphviz' 'harfbuzz' 'liblo' 'liblrdf' 'libogg' 'pulseaudio' 'libsamplerate'
+         'libsndfile' 'lilv' 'lv2' 'pango' 'readline' 'rubberband' 'serd' 'sord' 'sratom'
+         'suil' 'libarchive' 'libwebsockets')
+makedepends=('boost' 'cppunit' 'itstool' 'libusb')
+optdepends=('kde-gtk-config: gtk integration settings for Plasma')
+options=('!strip')
+source=("${_pkgname}-${pkgver}-${pkgrel}::git+https://github.com/Ardour/ardour#tag=8.10")
+sha512sums=('SKIP')
+
+build() {
+  cd ${_pkgname}-${pkgver}-${pkgrel}
+  # glib2 2.68 needed
+
+  ./waf configure --prefix=/usr \
+    --configdir=/etc \
+    --with-backends="alsa,dummy,jack,pulseaudio" \
+    --libjack=weak \
+    --optimize \
+    --cxx11 \
+    --freedesktop \
+    --ptformat \
+    --no-phone-home
+  ./waf build -v
+}
+
+package() {
+  cd ${_pkgname}-${pkgver}-${pkgrel}
+
+  ./waf i18n --destdir=${pkgdir}
+  ./waf install --destdir=${pkgdir}
+}
