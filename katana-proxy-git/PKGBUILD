@@ -1,0 +1,21 @@
+_name=katana-proxy-git
+pkgname="${_name,,}"
+pkgver=1.0
+pkgrel=1
+pkgdesc="mididings proxy to control a Boss Katana Mk2 Head with a Behringer FCB1010 running Wino2 firmware"
+arch=(any)
+url='https://github.com/rafrombrc/katana_midi_proxy'
+license=(GPLv3.0)
+install=katana-proxy.install
+depends=(mididings midiminder)
+source=("git+https://github.com/rafrombrc/katana_midi_proxy.git")
+sha512sums=('SKIP')
+
+package() {
+    cd $srcdir/katana_midi_proxy
+    install -Dvm755 -T katana_midi_proxy.py "$pkgdir"/usr/bin/katana-midi-proxy
+    install -Dvm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
+    install -Dvm644 sysfiles/etc/midiminder/katana-proxy.rules -t "$pkgdir"/etc/midiminder/
+    install -Dvm644 sysfiles/etc/systemd/system/katana-proxy.service -t "$pkgdir"/usr/lib/systemd/system/
+    install -Dvm644 sysfiles/etc/udev/rules.d/90-katana-proxy.rules -t "$pkgdir"/etc/udev/rules.d/
+}
