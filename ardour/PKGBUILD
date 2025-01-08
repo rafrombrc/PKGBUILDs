@@ -17,6 +17,10 @@ options=('!strip')
 source=("${_pkgname}-${pkgver}-${pkgrel}::git+https://github.com/Ardour/ardour#tag=8.10")
 sha512sums=('SKIP')
 
+prepare() {
+  cp ../clearlooks.rc $srcdir/Ardour-8.10.0-2/gtk2_ardour/clearlooks.rc.in
+}
+
 build() {
   cd ${_pkgname}-${pkgver}-${pkgrel}
   # glib2 2.68 needed
