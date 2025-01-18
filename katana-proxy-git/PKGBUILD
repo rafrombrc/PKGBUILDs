@@ -16,6 +16,6 @@ package() {
     install -Dvm755 -T katana_midi_proxy.py "$pkgdir"/usr/bin/katana-midi-proxy
     install -Dvm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
     install -Dvm644 sysfiles/etc/midiminder/katana-proxy.rules -t "$pkgdir"/etc/midiminder/
-    install -Dvm644 sysfiles/etc/systemd/system/katana-proxy.service -t "$pkgdir"/usr/lib/systemd/system/
+    install -Dvm644 sysfiles/usr/lib/systemd/system/katana-proxy.service -t "$pkgdir"/usr/lib/systemd/system/
     install -Dvm644 sysfiles/etc/udev/rules.d/90-katana-proxy.rules -t "$pkgdir"/etc/udev/rules.d/
 }
