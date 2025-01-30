@@ -7,6 +7,7 @@ arch=(any)
 url='https://github.com/mzero/midiminder'
 license=(BSD-2-Clause)
 depends=(fmt alsa-lib)
+options=(!debug)
 groups=(pro-audio)
 install=midiminder.install
 source=("${pkgname}-${pkgver}-${pkgrel}::git+https://github.com/mzero/midiminder#commit=e25eb6c5ad7f632d3fff52553c88547dbf4a0ea3")

@@ -7,7 +7,7 @@ pkgdesc="A multichannel hard disk recorder and digital audio workstation"
 arch=('x86_64')
 url="https://ardour.org/"
 license=('GPL')
-depends=('aubio' 'cairomm' 'libx11' 'libxml2' 'pangomm' 'qjackctl' 'taglib' 'fftw' 'flac' 
+depends=('aubio' 'cairomm' 'libx11' 'libxml2' 'pangomm' 'qjackctl' 'taglib' 'fftw' 'flac'
          'graphviz' 'harfbuzz' 'liblo' 'liblrdf' 'libogg' 'pulseaudio' 'libsamplerate'
          'libsndfile' 'lilv' 'lv2' 'pango' 'readline' 'rubberband' 'serd' 'sord' 'sratom'
          'suil' 'libarchive' 'libwebsockets')
