@@ -1,0 +1,5 @@
+75c75,76
+< exec $DEBUGGER @LIBDIR@/ardour-@VERSION@ "$@"
+---
+> $DEBUGGER @LIBDIR@/ardour-@VERSION@ "$@"
+> wineserver -k

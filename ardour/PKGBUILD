@@ -18,7 +18,8 @@ source=("${_pkgname}-${pkgver}-${pkgrel}::git+https://github.com/Ardour/ardour#t
 sha512sums=('SKIP')
 
 prepare() {
-  patch "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/gtk2_ardour/clearlooks.rc.in" ../clearlooks.rc.patch
+    patch "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/gtk2_ardour/clearlooks.rc.in" ../clearlooks.rc.patch
+    patch "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/gtk2_ardour/ardour.sh.in" ../ardour.sh.patch
 }
 
 build() {
