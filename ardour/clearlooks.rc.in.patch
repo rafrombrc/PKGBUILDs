@@ -1,0 +1,83 @@
+285c285
+<         bg[NORMAL] = @darkest
+---
+>         bg[NORMAL] = { 0.00, 0.00, 0.00 }
+295c295
+< 	font_name = "@FONTFAMILY@ @FONT_SMALLER@"
+---
+> 	font_name = "  6"
+300c300
+< 	font_name = "@FONTFAMILY@ @FONT_SMALL@"
+---
+> 	font_name = "  7"
+305c305
+< 	font_name = "@CLOCKFONT@ @FONT_NORMAL@"
+---
+> 	font_name = "ArdourMono  8"
+310c310
+< 	font_name = "@FONTFAMILY@ italic @FONT_SMALL@"
+---
+> 	font_name = " italic  7"
+315c315
+< 	font_name = "@FONTFAMILY@ bold @FONT_SMALL@"
+---
+> 	font_name = " bold  7"
+320c320
+< 	font_name = "@FONTFAMILY@ bold @FONT_NORMAL@"
+---
+> 	font_name = " bold  8"
+325c325
+< 	font_name = "@FONTFAMILY@ @FONT_NORMAL@"
+---
+> 	font_name = "  8"
+330c330
+<         font_name = "@MONOSPACE@ @FONT_SIZE_NORMAL@"
+---
+>         font_name = "ArdourMono 8"
+342c342
+< 	font_name = "@FONTFAMILY@ bold @FONT_LARGE@"
+---
+> 	font_name = " bold  14.5"
+347c347
+<         font_name = "@FONTFAMILY@ @FONT_BIG@"
+---
+>         font_name = "  11"
+352c352
+< 	font_name = "@CLOCKFONT@ @FONT_BIGGER@"
+---
+> 	font_name = "ArdourMono  13.5"
+357c357
+< 	font_name = "@FONTFAMILY@ @FONT_LARGE@"
+---
+> 	font_name = "  14.5"
+362c362
+< 	font_name = "bold @FONT_LARGE@"
+---
+> 	font_name = "bold  14.5"
+367c367
+< 	font_name = "@CLOCKFONT@ bold @FONT_MASSIVE@"
+---
+> 	font_name = "ArdourMono bold  48"
+372c372
+< 	font_name = "@FONTFAMILY@ bold @FONT_LARGER@"
+---
+> 	font_name = " bold  19"
+567,569c567,576
+< 	bg[NORMAL] = @background
+< 	bg[PRELIGHT] = lighter(@background)
+< 	bg[ACTIVE] = @darkest
+---
+> 	bg[NORMAL] = darker(@foreground)
+> 	bg[PRELIGHT] = shade(.9,@foreground)
+> 	bg[ACTIVE] = darker(@background)
+> 
+> 	GtkScrollbar::stepper-size = 0
+> 	GtkScrollbar::trough-side-details = 1
+> 	GtkScrollbar::activate-slider = 0
+> 	GtkScrollbar::slider-width = 14
+> 	GtkScrollbar::trough-border = 3
+> 	GtkHScrollbar::trough-border = 0
+900c907
+< 	bg[NORMAL] = darker(@background)
+---
+> 	bg[NORMAL] = lighter(@background)

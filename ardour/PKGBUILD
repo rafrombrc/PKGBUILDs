@@ -1,8 +1,8 @@
 
 pkgname=ardour
 _pkgname=Ardour
-pkgver=8.10
-pkgrel=2
+pkgver=8.12
+pkgrel=1
 pkgdesc="A multichannel hard disk recorder and digital audio workstation"
 arch=('x86_64')
 url="https://ardour.org/"
@@ -14,11 +14,11 @@ depends=('aubio' 'cairomm' 'libx11' 'libxml2' 'pangomm' 'qjackctl' 'taglib' 'fft
 makedepends=('boost' 'cppunit' 'itstool' 'libusb')
 optdepends=('kde-gtk-config: gtk integration settings for Plasma')
 options=('!strip')
-source=("${_pkgname}-${pkgver}-${pkgrel}::git+https://github.com/Ardour/ardour#tag=8.10")
+source=("${_pkgname}-${pkgver}-${pkgrel}::git+https://github.com/Ardour/ardour#tag=${pkgver}")
 sha512sums=('SKIP')
 
 prepare() {
-  cp ../clearlooks.rc $srcdir/Ardour-8.10.0-2/gtk2_ardour/clearlooks.rc.in
+  patch "$srcdir/${_pkgname}-${pkgver}-${pkgrel}/gtk2_ardour/clearlooks.rc.in" ../clearlooks.rc.patch
 }
 
 build() {
@@ -30,7 +30,6 @@ build() {
     --with-backends="alsa,dummy,jack,pulseaudio" \
     --libjack=weak \
     --optimize \
-    --cxx11 \
     --freedesktop \
     --ptformat \
     --no-phone-home
