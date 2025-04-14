@@ -1,6 +1,6 @@
 _pkgname=zohomeeting
 pkgname="${_pkgname}"-appimage
-pkgver=4.2.0
+pkgver=4.2.1
 pkgrel=1
 pkgdesc="Zoho Meeting desktop client application"
 arch=('x86_64')
@@ -11,7 +11,7 @@ options=(!debug !strip)
 _appimage="${_pkgname}-${pkgver}.AppImage"
 source_x86_64=("${_appimage}::https://d1ctjwn89mb7yf.cloudfront.net/agent/${pkgver}/ZohoMeeting-x64.AppImage")
 noextract=("${_appimage}")
-sha512sums_x86_64=('bed0f57a8b81d4364485f0709170ae54986d38b9a6c4c952d002d1d3fbfab93fe5b095d90d58a0bc4f4db021f23c98f963d23614aa2ab94cf095eb5c0dd903e2')
+sha512sums_x86_64=('4eeb70cdfefaea6ff03767e08d15833166bd80f3e26da19721dfb52a31bf6cc4559c478b19a9183138f4019f5886430f98ab2a342cc670558c41fd2e30fd3433')
 
 prepare() {
     chmod +x "${_appimage}"
