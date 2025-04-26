@@ -1,0 +1,20 @@
+[Desktop Entry]
+Comment[en_US]=
+Comment=
+Exec=/usr/bin/tuxguitar-bin
+GenericName[en_US]=
+GenericName=
+Icon=/opt/tuxguitar/share/pixmaps/tuxguitar.png
+MimeType=
+Name[en_US]=TuxGuitar
+Name=TuxGuitar
+NoDisplay=false
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application
+X-DBUS-ServiceName=
+X-DBUS-StartupType=
+X-KDE-SubstituteUID=false
+X-KDE-Username=
