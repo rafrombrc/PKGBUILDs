@@ -1,0 +1,24 @@
+pkgname='python-mopidy-muse'
+_module='Mopidy-Muse'
+_src_folder='Mopidy-Muse-0.0.36'
+pkgver='0.0.36'
+pkgrel=1
+pkgdesc="Mopidy interface with snapcast support"
+url="None"
+depends=('python')
+makedepends=('python-build' 'python-installer' 'python-wheel')
+license=('custom:Apache Software License')
+arch=('any')
+source=("https://files.pythonhosted.org/packages/bb/9b/2f263eee87ed1677111913f6c791bba06431f398fdcdedf44225b059149e/Mopidy-Muse-0.0.36.tar.gz")
+sha256sums=('a5c16761d0920e7a1431ca92a8674b26c79abea035759bfe40c8a619a9856c42')
+
+build() {
+    cd "${srcdir}/${_src_folder}"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+
+    cd "${srcdir}/${_src_folder}"
+    python -m installer --destdir="${pkgdir}" dist/*.whl
+}
