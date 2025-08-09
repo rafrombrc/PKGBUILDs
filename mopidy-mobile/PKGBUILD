@@ -1,0 +1,24 @@
+pkgname='python-mopidy-mobile'
+_module='Mopidy-Mobile'
+_src_folder='Mopidy-Mobile-1.11.0'
+pkgver='1.11.0'
+pkgrel=1
+pkgdesc="Mopidy Web client extension for mobile devices"
+url="https://github.com/tkem/mopidy-mobile"
+depends=('python')
+makedepends=('python-build' 'python-installer' 'python-wheel')
+license=('custom:Apache Software License')
+arch=('any')
+source=("https://files.pythonhosted.org/packages/02/d1/338f99944aa8c0d87ba631dddc9dbde5c6fd699ffd9d1d73690c6154d464/Mopidy-Mobile-1.11.0.tar.gz")
+sha256sums=('5909f1056212b8aa363d12f70b1dd7bc15d9643824bfd9e8c12464f78443f4f7')
+
+build() {
+    cd "${srcdir}/${_src_folder}"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+
+    cd "${srcdir}/${_src_folder}"
+    python -m installer --destdir="${pkgdir}" dist/*.whl
+}
