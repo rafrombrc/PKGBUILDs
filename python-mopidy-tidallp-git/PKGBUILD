@@ -1,0 +1,48 @@
+# Maintainer: Bjoern Franke <bjo+aur@schafweide.org>
+# Contributor: M. Backstroem <aur@backstroem.net>
+# Contributor: Luis Martinez <luis dot martinez at disroot dot org>
+# Contributor: John Hamelink <me@johnhame.link>
+
+# PKGBUILD modified by: Rob Miller <rob@nonsequitarian.org>
+#     This PKGBUILD includes a python script that appends a suffix to the
+#     Python package and Mopidy plugin names. This lets you have more than
+#     one mopidy-tidal plugin installed into one Mopidy instance, allowing
+#     simultaneous access to multiple Tidal account libraries. Other than
+#     that it matches the upstream python-mopidy-tidal package in every
+#     way.
+
+pkgname="python-mopidy-tidallp-git"
+_pkg="mopidy-tidal"
+pkgver=0.3.10
+pkgrel=0
+pkgdesc='Tidal music service integration, additional instance'
+arch=('any')
+url=https://github.com/tehkillerbee/mopidy-tidal
+license=('Apache')
+depends=('mopidy' 'python-pykka' 'python-tidalapi' 'python-requests' 'python-ratelimit' 'python-mpegdash')
+makedepends=('python-setuptools' 'python-build' 'python-installer' 'python-wheel' 'python-poetry-core')
+checkdepends=('python-pytest' 'python-pytest-mock')
+# source=("$pkgname-$pkgver.tar.gz::https://files.pythonhosted.org/packages/source/m/$_pkg/$_pkg-$pkgver.tar.gz")
+source=("$_pkg-$pkgver::git+https://github.com/tehkillerbee/mopidy-tidal.git#branch=feature/move-workers")
+sha256sums=('SKIP')
+
+prepare() {
+	python ../add-suffix.py "$_pkg-$pkgver"
+}
+
+build() {
+	cd "$_pkg-$pkgver"
+	python -m build --wheel --no-isolation
+}
+
+## tests currently fail
+## mybe add tests back on next release
+#check() {
+#	cd "$_pkg-$pkgver"
+#	PYTHONPATH="$PWD" pytest -x --disable-warnings
+#}
+
+package() {
+	cd "$_pkg-$pkgver"
+	PYTHONHASHSEED=0 python -m installer --destdir="$pkgdir/" dist/*.whl
+}
