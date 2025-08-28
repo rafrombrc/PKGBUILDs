@@ -7,9 +7,8 @@
 #     This PKGBUILD includes a python script that appends a suffix to the
 #     Python package and Mopidy plugin names. This lets you have more than
 #     one mopidy-tidal plugin installed into one Mopidy instance, allowing
-#     simultaneous access to multiple Tidal account libraries. Other than
-#     that it matches the upstream python-mopidy-tidal package in every
-#     way.
+#     simultaneous access to multiple Tidal account libraries. No further
+#     changes are made.
 
 pkgname="python-mopidy-tidallp-git"
 _pkg="mopidy-tidal"
