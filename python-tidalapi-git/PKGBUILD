@@ -4,7 +4,7 @@
 
 _pkgname=python-tidalapi
 pkgname=$_pkgname-git
-pkgver=v0.8.4.r13.g6211a6c
+pkgver=v0.8.6.r0.g67581e8
 pkgrel=1
 pkgdesc='Unofficial API for TIDAL music streaming service.'
 arch=('any')
@@ -19,7 +19,10 @@ makedepends=(
 	'python-installer'
 	'python-wheel'
 	'python-sphinx'
-	'python-setuptools')
+	'python-setuptools'
+        'python-poetry-core'
+        'python-isodate'
+        'python-mpegdash')
 changelog=HISTORY.rst
 source=("$_pkgname::git+$url")
 sha256sums=('SKIP')
