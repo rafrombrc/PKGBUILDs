@@ -9,33 +9,33 @@
 #     one mopidy-tidal plugin installed into one Mopidy instance, allowing
 #     simultaneous access to multiple Tidal account libraries. No further
 #     changes are made.
-
-pkgname="python-mopidy-tidallp-git"
-_pkg="mopidy-tidal"
-pkgver=v0.3.11.r0.e27a79d
-pkgrel=1
-pkgdesc='Tidal music service integration, additional instance'
+pkgname=python-mopidy-tidallp
+_pkg=mopidy_tidal
+pkgver=0.3.9
+pkgrel=2
+pkgdesc='Tidal music service integration'
 arch=('any')
 url=https://github.com/tehkillerbee/mopidy-tidal
 license=('Apache')
 depends=('mopidy' 'python-pykka' 'python-tidalapi' 'python-requests' 'python-ratelimit' 'python-mpegdash')
 makedepends=('python-setuptools' 'python-build' 'python-installer' 'python-wheel' 'python-poetry-core')
 checkdepends=('python-pytest' 'python-pytest-mock')
-# source=("$pkgname-$pkgver.tar.gz::https://files.pythonhosted.org/packages/source/m/$_pkg/$_pkg-$pkgver.tar.gz")
-source=("$_pkg::git+https://github.com/tehkillerbee/mopidy-tidal.git")
-sha256sums=('SKIP')
+source=("$pkgname-$pkgver.tar.gz::https://files.pythonhosted.org/packages/source/m/$_pkg/$_pkg-$pkgver.tar.gz")
+sha256sums=('f76ccc882e4e7b80ade9b2d5d6f77c35dbf234078f1c203a9c6a4842041cd868')
 
-pkgver() {
-	cd "$srcdir/$_pkg"
-	git describe --long --tags | sed 's/\([^-]*-\)g/r\1/;s/-/./g'
-}
+
+# pkgver() {
+# 	cd "$srcdir/$_pkg-$pkgver"
+# 	git describe --long --tags | sed 's/\([^-]*-\)g/r\1/;s/-/./g'
+# }
 
 prepare() {
-	python ../add-suffix.py "$_pkg"
+    ls
+    python ../add-suffix.py "$_pkg-$pkgver"
 }
 
 build() {
-	cd "$_pkg"
+	cd "$_pkg-$pkgver"
 	python -m build --wheel --no-isolation
 }
 
@@ -47,6 +47,6 @@ build() {
 #}
 
 package() {
-	cd "$_pkg"
+	cd "$_pkg-$pkgver"
 	PYTHONHASHSEED=0 python -m installer --destdir="$pkgdir/" dist/*.whl
 }
