@@ -1,0 +1,39 @@
+# Maintainer: Rob Miller <rob@nonsequitarian.org>
+# Contributor: Based on zl-equalizer-bin by Andrej Radović <r.andrej@gmail.com>
+#
+pkgname=zl-splitter-bin
+_pkgname=ZLSplitter
+_fname=ZL.Splitter
+_dirname="ZL Splitter"
+pkgver=0.2.0
+pkgrel=1
+pkgdesc="Advanced audio splitter plugin by ZL-Audio"
+arch=('x86_64' 'aarch64')
+url="https://github.com/ZL-Audio/ZLSplitter"
+license=('AGPL3')
+depends=('gcc-libs' 'glibc')
+provides=('zlsplitter')
+conflicts=('zlsplitter')
+options=(!strip)
+
+source=("license-${pkgver}.md::https://raw.githubusercontent.com/ZL-Audio/${_pkgname}/refs/tags/${pkgver}/LICENSE.md")
+source_x86_64=("${_pkgname}-${pkgver}-Linux-x86.zip::https://github.com/ZL-Audio/${_pkgname}/releases/download/${pkgver}/${_fname}-${pkgver}-Linux-x86.zip")
+source_aarch64=("${_pkgname}-${pkgver}-Linux-arm.zip::https://github.com/ZL-Audio/${_pkgname}/releases/download/${pkgver}/${_fname}-${pkgver}-Linux-arm.zip")
+sha256sums=('a96fd9920a72e79720d41bcf32ccd58634194aa01ee82f246a72392015d626e9')
+sha256sums_x86_64=('87f53d6c608e20997916a1b507d7d4651482028af7f14a0463e7cbdb7c5c068c')
+sha256sums_aarch64=('20d832d82590893328abb38b469e035968b3191979a7a63e2b5d86a188cc8d98')
+
+package() {
+    # Create directories
+    install -dm755 "${pkgdir}/usr/lib/vst3"
+    install -dm755 "${pkgdir}/usr/lib/lv2"
+
+    # Install VST3 plugin
+    cp -a "${srcdir}/VST3/${_dirname}.vst3" "${pkgdir}/usr/lib/vst3/${_pkgname}.vst3"
+
+    # Install LV2 plugin if available
+    cp -a "${srcdir}/LV2/${_dirname}.lv2" "${pkgdir}/usr/lib/lv2/${_pkgname}.lv2"
+
+    # Install license
+    install -Dm644 "${srcdir}/license-${pkgver}.md" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}

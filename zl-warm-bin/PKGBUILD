@@ -1,0 +1,33 @@
+# Maintainer: Rob Miller <rob@nonsequitarian.org>
+# Contributor: Based on zl-equalizer-bin by Andrej Radović <r.andrej@gmail.com>
+#
+pkgname=zl-warm-bin
+_pkgname=ZLWarm
+_fname=ZL.Warm
+_dirname="ZL Warm"
+pkgver=0.2.1
+pkgrel=1
+pkgdesc="Distortion / saturation audio plugin by ZL-Audio"
+arch=('x86_64')
+url="https://github.com/ZL-Audio/ZLWarm"
+license=('GPL3')
+depends=('gcc-libs' 'glibc')
+provides=('zlwarm')
+conflicts=('zlwarm')
+options=(!strip)
+
+source=("license-${pkgver}.md::https://raw.githubusercontent.com/ZL-Audio/${_pkgname}/refs/tags/${pkgver}/LICENSE.md")
+source_x86_64=("${_pkgname}-${pkgver}.zip::https://github.com/ZL-Audio/${_pkgname}/releases/download/${pkgver}/${_fname}-${pkgver}.zip")
+sha256sums=('867f00bc11d3ae962391e33ddb19737308077120033230029bf7f1bd03664522')
+sha256sums_x86_64=('1e37bde56287423e075360cb44159bee4498a139144ff3c65c6d4e85e5198ef4')
+
+package() {
+    # Create directories
+    install -dm755 "${pkgdir}/usr/lib/vst3"
+
+    # Install VST3 plugin
+    cp -a "${srcdir}/VST3/${_dirname}.vst3" "${pkgdir}/usr/lib/vst3/${_dirname}.vst3"
+
+    # Install license
+    install -Dm644 "${srcdir}/license-${pkgver}.md" "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}
