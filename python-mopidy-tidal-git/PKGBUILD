@@ -23,7 +23,7 @@ license=('Apache')
 depends=('mopidy' 'python-pykka' 'python-tidalapi' 'python-requests' 'python-ratelimit' 'python-mpegdash')
 makedepends=('python-setuptools' 'python-build' 'python-installer' 'python-wheel' 'python-poetry-core')
 checkdepends=('python-pytest' 'python-pytest-mock')
-source=("$_pkg::git+https://github.com/tehkillerbee/mopidy-tidal.git")
+source=("$_pkg::git+$url")
 sha256sums=('SKIP')
 
 pkgver() {
