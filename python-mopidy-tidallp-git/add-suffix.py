@@ -62,6 +62,15 @@ def process_files(dir_path: Path) -> None:
 			new_child.rename(new_name)
 
 
+def rmdir(dir_path: Path) -> None:
+	for item in dir_path.iterdir():
+		if item.is_dir():
+			rmdir(item)
+		else:
+			item.unlink()
+	dir_path.rmdir()
+
+
 def process_dirs(dir_path: Path) -> None:
 	logger.info("dir processing: {}".format(str(dir_path)))
 	for child in dir_path.iterdir():
@@ -73,7 +82,9 @@ def process_dirs(dir_path: Path) -> None:
 			process_dirs(child)
 			if 'tidal' in child.name and 'tidallp' not in child.name:
 				new_name = child.parent / child.name.replace('tidal', 'tidallp')
-				child.rename(new_name)
+				if new_name.exists():
+					rmdir(new_name)
+				child.replace(new_name)
 
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@
 
 pkgname="python-mopidy-tidal-git"
 _pkg="mopidy-tidal"
-pkgver=v0.3.11.r0.e27a79d
+pkgver=v0.3.11.r2.75c0562
 pkgrel=1
 pkgdesc='Tidal music service integration'
 arch=('any')

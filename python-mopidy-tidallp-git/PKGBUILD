@@ -11,7 +11,7 @@
 #     changes are made.
 pkgname=python-mopidy-tidallp-git
 _pkg=mopidy_tidal
-pkgver=v0.3.11.r0.e27a79d
+pkgver=v0.3.11.r2.75c0562
 pkgrel=1
 pkgdesc='Tidal music service integration, second instance'
 provides=('python-mopidy-tidallp')
@@ -31,8 +31,7 @@ pkgver() {
 }
 
 prepare() {
-    ls
-    python ../add-suffix.py "$_pkg"
+	python ../add-suffix.py "$_pkg"
 }
 
 build() {

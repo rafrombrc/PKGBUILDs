@@ -4,7 +4,7 @@
 
 _pkgname=python-tidalapi
 pkgname=$_pkgname-git
-pkgver=v0.8.6.r0.g67581e8
+pkgver=v0.8.8.r0.g29d5153
 pkgrel=1
 pkgdesc='Unofficial API for TIDAL music streaming service.'
 arch=('any')
@@ -33,6 +33,13 @@ pkgver() {
 	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
+prepare() {
+	cd "$_pkgname"
+	if [ -f dist/*.whl ]; then
+		mv $(ls dist/*.whl) $(ls dist/*.whl).old
+	fi
+}
+
 build() {
 	cd "$_pkgname"
 	python -m build --wheel --no-isolation
@@ -43,6 +50,6 @@ build() {
 package() {
 	export PYTHONHASHSEED=0
 	cd "$_pkgname"
-	python -m installer --destdir="$pkgdir/" dist/*.whl
+	python -m installer --destdir "$pkgdir/" dist/*.whl
 	install -Dm644 docs/_build/man/tidalapi.1 -t "$pkgdir/usr/share/man/man1/"
 }
