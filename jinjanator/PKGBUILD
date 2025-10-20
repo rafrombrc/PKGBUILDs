@@ -5,7 +5,8 @@ pkgver='25.3.0'
 pkgrel=1
 pkgdesc="Command-line interface to Jinja2 for templating in shell scripts."
 url="None"
-depends=('python')
+depends=('python' 'python-hatchling' 'python-hatch-vcs'
+	 'python-hatch-fancy-pypi-readme' 'python-dotenv')
 makedepends=('python-build' 'python-installer' 'python-wheel')
 license=('unknown')
 arch=('any')
