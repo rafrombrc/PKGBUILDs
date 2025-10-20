@@ -1,0 +1,24 @@
+pkgname='python-jinjanator'
+_module='jinjanator'
+_src_folder='jinjanator-25.3.0'
+pkgver='25.3.0'
+pkgrel=1
+pkgdesc="Command-line interface to Jinja2 for templating in shell scripts."
+url="None"
+depends=('python')
+makedepends=('python-build' 'python-installer' 'python-wheel')
+license=('unknown')
+arch=('any')
+source=("https://files.pythonhosted.org/packages/e4/b9/caea97c32f8722bbd4d36038985e39d7514d7201612194e6db1bc59ecf17/jinjanator-25.3.0.tar.gz")
+sha256sums=('ca0d9f290c8d89c32d11bf27ce06d0329388ce96e6ed5f35810f532d7d219473')
+
+build() {
+    cd "${srcdir}/${_src_folder}"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+
+    cd "${srcdir}/${_src_folder}"
+    python -m installer --destdir="${pkgdir}" dist/*.whl
+}

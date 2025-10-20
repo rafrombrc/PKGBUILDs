@@ -1,0 +1,24 @@
+pkgname='python-aider-ce'
+_module='aider-ce'
+_src_folder='aider_ce-0.87.13'
+pkgver='0.87.13'
+pkgrel=1
+pkgdesc="Aider is AI pair programming in your terminal"
+url="None"
+depends=('python')
+makedepends=('python-build' 'python-installer' 'python-wheel')
+license=('custom:Apache Software License')
+arch=('any')
+source=("https://files.pythonhosted.org/packages/c2/f0/51166d121f8dc5a3db276b327bb0fdc5a6ac5853c5422fbfe59a662933a9/aider_ce-0.87.13.tar.gz")
+sha256sums=('469d1bf17f07940dd0df3e08b7ad93c21092da33e66551b4962e8a7f03220b0e')
+
+build() {
+    cd "${srcdir}/${_src_folder}"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+
+    cd "${srcdir}/${_src_folder}"
+    python -m installer --destdir="${pkgdir}" dist/*.whl
+}
