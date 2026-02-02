@@ -1,0 +1,24 @@
+pkgname='python-mopidy-soundcloud'
+_module='mopidy-soundcloud'
+_src_folder='Mopidy-SoundCloud-3.0.2'
+pkgver='3.0.2'
+pkgrel=1
+pkgdesc="Mopidy extension for playing music from SoundCloud"
+url="https://github.com/mopidy/mopidy-soundcloud"
+depends=('python')
+makedepends=('python-build' 'python-installer' 'python-wheel')
+license=('custom:MIT License')
+arch=('any')
+source=("https://files.pythonhosted.org/packages/84/59/6e556a8c0c5203228a4dad056b2cfd7b2a2a4f737fa740ed436a4b5772ee/Mopidy-SoundCloud-3.0.2.tar.gz")
+sha256sums=('783ac1459750c9d157bd9d097e486199a16838d6eb1268dd8a642ae37a15f3e2')
+
+build() {
+    cd "${srcdir}/${_src_folder}"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+
+    cd "${srcdir}/${_src_folder}"
+    python -m installer --destdir="${pkgdir}" dist/*.whl
+}
