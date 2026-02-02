@@ -1,0 +1,24 @@
+pkgname='python-mopidy-mixcloud'
+_module='Mopidy-Mixcloud'
+_src_folder='Mopidy-Mixcloud-3.1415.9265'
+pkgver='3.1415.9265'
+pkgrel=1
+pkgdesc="Mopidy Mixcloud extension"
+url="https://github.com/unusualcomputers/unusualcomputers/tree/master/code/mopidy/mopidymixcloud"
+depends=('python')
+makedepends=('python-build' 'python-installer' 'python-wheel')
+license=('custom:Apache Software License')
+arch=('any')
+source=("https://files.pythonhosted.org/packages/81/85/96ed75e22048f93a7afd51586a70366d6dc1160b090a94848516fdaff412/Mopidy-Mixcloud-3.1415.9265.tar.gz")
+sha256sums=('0555c616c6d2713fc6e97440e37706dda8855a21c0d9491324bb02e9690e3959')
+
+build() {
+    cd "${srcdir}/${_src_folder}"
+    python -m build --wheel --no-isolation
+}
+
+package() {
+
+    cd "${srcdir}/${_src_folder}"
+    python -m installer --destdir="${pkgdir}" dist/*.whl
+}
