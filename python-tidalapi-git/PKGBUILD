@@ -4,7 +4,7 @@
 
 _pkgname=python-tidalapi
 pkgname=$_pkgname-git
-pkgver=v0.8.8.r0.g29d5153
+pkgver=v0.8.11.r0.g899e6b3
 pkgrel=1
 pkgdesc='Unofficial API for TIDAL music streaming service.'
 arch=('any')

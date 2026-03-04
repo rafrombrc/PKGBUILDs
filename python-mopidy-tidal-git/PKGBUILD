@@ -12,7 +12,7 @@
 
 pkgname="python-mopidy-tidal-git"
 _pkg="mopidy-tidal"
-pkgver=v0.3.11.r2.75c0562
+pkgver=v0.3.13.r14.d9ec2bb
 pkgrel=1
 pkgdesc='Tidal music service integration'
 arch=('any')
@@ -30,6 +30,12 @@ pkgver() {
 	cd "$srcdir/$_pkg"
 	git describe --long --tags | sed 's/\([^-]*-\)g/r\1/;s/-/./g'
 }
+
+prepare() {
+        cd "$srcdir/$_pkg"
+        patch -Np1 -i ../../mopidy-tidal.patch
+}
+
 
 build() {
 	cd "$_pkg"
